@@ -4,6 +4,12 @@
 
 ^ Wsh - 🔥 Salut mon poto, bienvenue dans le langage Wesh! 🔥
 
+^ Wsh - === Test simple de Cité ===
+^ Cité - 1000 ms
+
+^ Wsh - === Test simple de crampté ===
+^ crampté - "Test...", 1000 ms, "Terminé!"
+
 # Test des variables
 ^ watt : age = 16
 ^ watt : nom = "Kevin"

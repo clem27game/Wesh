@@ -427,13 +427,15 @@ void process_cite(const char* command) {
     char* trimmed_command = trim((char*)command);
     
     if (sscanf(trimmed_command, "%d ms", &ms) == 1) {
-        printf("⏱️  Délai de %d ms...", ms);
+        printf("⏱️  Attente de %d ms...", ms);
         fflush(stdout);
         usleep(ms * 1000); // convertir ms en microseconds
-        printf(" ✅ Terminé!\n");
+        printf("\r⏱️  Attente de %d ms... ✅ Terminé!\n", ms);
+        fflush(stdout);
     } else {
         printf("❌ Erreur: format incorrect pour Cité. Utilise: ^ Cité - [nombre] ms\n");
         printf("📝 Exemple: ^ Cité - 1000 ms\n");
+        printf("🔍 Commande reçue: '%s'\n", trimmed_command);
     }
 }
 
@@ -452,19 +454,21 @@ void process_crampte(const char* command) {
     strcpy(trimmed_command, command);
     char* cmd = trim(trimmed_command);
     
-    // Parser avec plusieurs formats possibles
+    // Parser avec plusieurs formats possibles (plus flexible avec les espaces)
     if (sscanf(cmd, "\"%[^\"]\", %d ms, \"%[^\"]\"", initial, &ms, final) == 3 ||
         sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3 ||
-        sscanf(cmd, "\"%[^\"]\", %d ms  , \"%[^\"]\"", initial, &ms, final) == 3) {
+        sscanf(cmd, "\"%[^\"]\", %d ms  , \"%[^\"]\"", initial, &ms, final) == 3 ||
+        sscanf(cmd, "\"%[^\"]\"%*[ ],%*[ ]%d%*[ ]ms%*[ ],%*[ ]\"%[^\"]\"", initial, &ms, final) == 3) {
         
         printf("🔄 %s", initial);
         fflush(stdout);
         usleep(ms * 1000);
         
-        // Utiliser plusieurs méthodes pour s'assurer que l'effacement fonctionne
-        printf("\r");  // Retour chariot
-        for(int i = 0; i < strlen(initial) + 3; i++) {
-            printf(" ");  // Effacer avec des espaces
+        // Méthode d'effacement robuste
+        int initial_len = strlen(initial) + 3; // +3 pour l'émoji
+        printf("\r");  // Retour au début de ligne
+        for(int i = 0; i < initial_len + 10; i++) {
+            printf(" ");  // Effacer complètement la ligne
         }
         printf("\r✅ %s\n", final);  // Afficher le nouveau message
         fflush(stdout);
