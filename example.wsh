@@ -2,7 +2,7 @@
 # Exemple complet du langage Wesh
 # Fichier de démonstration pour toutes les fonctionnalités
 
-^ Wsh - Salut mon poto, bienvenue dans le langage Wesh!
+^ Wsh - 🔥 Salut mon poto, bienvenue dans le langage Wesh! 🔥
 
 # Test des variables
 ^ watt : age = 16
@@ -31,21 +31,21 @@
 
 ^ Wsh - === Test des conditions ===
 ^ poto : si age < 18
-alors  ^ Wsh - "Tu es mineur, petit délinquant!"
+alors ^ Wsh - Tu es mineur, petit délinquant!
 
 ^ poto : si score > 50
-alors  ^ reuf : couleur vert - "Excellent score mon poto!"
+alors ^ reuf : couleur vert - "Excellent score mon poto!"
 
 ^ poto : si age == 16
-alors  ^ reuf : couleur rose - "Tu as exactement 16 ans!"
+alors ^ reuf : couleur rose - "Tu as exactement 16 ans!"
 
 ^ poto : si score >= 100
-alors  ^ Wsh - "Score parfait, tu gères!"
+alors ^ Wsh - Score parfait, tu gères!
 
 ^ Wsh - === Test des délais ===
-^ Wsh - "Attente de 1 seconde..."
+^ Wsh - Attente de 1 seconde...
 ^ Cité - 1000 ms
-^ Wsh - "C'est fini!"
+^ Wsh - C'est fini!
 
 ^ Wsh - === Test de modification de message ===
 ^ crampté - "Chargement du swag...", 2000 ms , "Swag chargé avec succès!"
@@ -56,10 +56,10 @@ alors  ^ Wsh - "Score parfait, tu gères!"
 ^ Wsh - === Test de conditions multiples ===
 ^ watt : test = 25
 ^ poto : si test < 30
-alors  ^ reuf : couleur jaune - "Test inférieur à 30"
+alors ^ reuf : couleur jaune - "Test inférieur à 30"
 
 ^ poto : si test != 20
-alors  ^ Wsh - "Test différent de 20"
+alors ^ Wsh - Test différent de 20
 
 ^ Wsh - === Fin du programme ===
 ^ reuf : couleur cyan - "Programme terminé, à plus dans le bus poto!"

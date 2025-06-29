@@ -302,12 +302,12 @@ void process_wsh(const char* message) {
     strcpy(clean_message, message);
     char* trimmed = trim(clean_message);
     
-    if (trimmed[0] == '"' && trimmed[strlen(trimmed)-1] == '"') {
+    if (strlen(trimmed) >= 2 && trimmed[0] == '"' && trimmed[strlen(trimmed)-1] == '"') {
         trimmed[strlen(trimmed)-1] = '\0';
         memmove(trimmed, trimmed + 1, strlen(trimmed));
     }
     
-    printf(" %s\n", trimmed);
+    printf("%s\n", trimmed);
 }
 
 // Fonction pour traiter les commandes Capté (mathématiques)
@@ -326,10 +326,16 @@ void process_quoicoubeh(const char* command) {
         return; // Ne pas exécuter si on est dans un bloc conditionnel false
     }
     
-    if (strstr(command, "donne moi ma blague poto ou tes mort") != NULL) {
-        srand(time(NULL) + rand()); // Amélioration du seed
+    char* trimmed_command = trim((char*)command);
+    if (strstr(trimmed_command, "× donne moi ma blague poto ou tes mort") != NULL ||
+        strstr(trimmed_command, "donne moi ma blague poto ou tes mort") != NULL) {
+        static int seed_initialized = 0;
+        if (!seed_initialized) {
+            srand(time(NULL));
+            seed_initialized = 1;
+        }
         int index = rand() % nombre_blagues;
-        printf(" 🤣 Voici une blague pour toi:\n");
+        printf("🤣 Voici une blague pour toi:\n");
         printf("💬 %s\n", blagues[index]);
     } else {
         printf("❌ Erreur: Tu dois écrire exactement 'quoicoubeh × donne moi ma blague poto ou tes mort' !\n");
@@ -455,8 +461,14 @@ void process_line(char* line) {
         return;
     }
     
-    // Vérifier si c'est une ligne "alors"
-    if (strcmp(trimmed, "alors") == 0) {
+    // Vérifier si c'est une ligne "alors" (peut être indentée)
+    char* alors_check = strstr(trimmed, "alors");
+    if (alors_check != NULL && strstr(alors_check, "^") != NULL) {
+        // C'est une ligne "alors" avec une commande
+        char* command_start = strstr(alors_check, "^");
+        process_line(command_start); // Traiter la commande après "alors"
+        return;
+    } else if (strcmp(trimmed, "alors") == 0) {
         process_alors();
         return;
     }
@@ -469,21 +481,21 @@ void process_line(char* line) {
     command = trim(command);
     
     if (strncmp(command, "Wsh -", 5) == 0) {
-        process_wsh(command + 5);
+        process_wsh(trim(command + 5));
     } else if (strncmp(command, "Capté :", 7) == 0) {
-        process_capte(command + 7);
+        process_capte(trim(command + 7));
     } else if (strncmp(command, "quoicoubeh", 10) == 0) {
-        process_quoicoubeh(command + 10);
+        process_quoicoubeh(trim(command + 10));
     } else if (strncmp(command, "poto :", 6) == 0) {
-        process_poto(command + 6);
+        process_poto(trim(command + 6));
     } else if (strncmp(command, "watt :", 6) == 0) {
-        process_watt(command + 6);
+        process_watt(trim(command + 6));
     } else if (strncmp(command, "reuf :", 6) == 0) {
-        process_reuf(command + 6);
+        process_reuf(trim(command + 6));
     } else if (strncmp(command, "Cité -", 6) == 0) {
-        process_cite(command + 6);
+        process_cite(trim(command + 6));
     } else if (strncmp(command, "crampté -", 9) == 0) {
-        process_crampte(command + 9);
+        process_crampte(trim(command + 9));
     } else {
         printf("❌ Commande inconnue: %s\n", command);
     }
@@ -509,8 +521,8 @@ int main(int argc, char* argv[]) {
         line[strcspn(line, "\n")] = 0;
         process_line(line);
         
-        // Réinitialiser le contexte conditionnel après chaque ligne si nécessaire
-        if (in_condition_block && strstr(line, "alors") == NULL && strstr(line, "poto") == NULL) {
+        // Réinitialiser le contexte conditionnel après une ligne "alors" exécutée
+        if (in_condition_block && strstr(line, "alors") != NULL) {
             in_condition_block = 0;
             execute_then_block = 0;
         }
