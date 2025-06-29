@@ -1,2 +1,1 @@
 Test du langage Wesh avancé
-Ligne ajoutée avec succès!
