@@ -42,7 +42,6 @@ const char* blagues[MAX_BLAGUES] = {
     "Que dit un pingouin quand il mange ? C'est de la glace !",
     "Pourquoi les schtroumpfs rigolent tout le temps ? Parce qu'ils sont bleus !",
     "Comment appelle-t-on un chien qui n'a pas de pattes ? On ne l'appelle pas, on va le chercher !",
-    "Qu'est-ce qui est jaune et qui attend ? Jonathan !",
     "Que dit un cannibale quand il présente sa femme ? Ma chérie !",
     "Pourquoi les policiers portent des bretelles ? Pour tenir leur pantalon !",
     "Qu'est-ce qui est petit, rond et qui fait peur aux mammouths ? Un petit pois avec une kalach !",
@@ -142,9 +141,33 @@ const char* blagues[MAX_BLAGUES] = {
     "Comment appelle-t-on un dinosaure qui fait du bruit en dormant ? Un dino-ronfleur !",
     "Que dit un escargot qui va vite ? Ça y est, je suis lancé !",
     "Pourquoi les scarabées ne vont jamais au cinéma ? Parce qu'ils préfèrent les coléo-spectacles !",
-    "Qu'est-ce qui a des racines mais ne pousse jamais ? Vos cheveux !"
+    "Qu'est-ce qui a des racines mais ne pousse jamais ? Vos cheveux !",
+    "Comment appelle-t-on un poisson qui porte une couronne ? Un roi-poisson !",
+    "Que dit un nuage qui s'ennuie ? Il pleut que je m'amuse !",
+    "Pourquoi les mathématiciens ne bronzent jamais ? Parce qu'ils restent toujours à l'ombre des problèmes !",
+    "Qu'est-ce qui est jaune et qui fait du bruit ? Un canari avec un marteau !",
+    "Comment appelle-t-on un sorcier sans baguette ? Un sorcier désarmé !",
+    "Que dit une chaussette trouée ? J'ai un trou de mémoire !",
+    "Pourquoi les robots ne sont jamais malades ? Parce qu'ils ont de bons anti-virus !",
+    "Qu'est-ce qui est grand, gris et qui ne sert à rien ? Un éléphant qui fait grève !",
+    "Comment fait-on pour attraper un ordinateur ? Avec un filet-work !",
+    "Que dit un calendrier fatigué ? J'ai mes jours !",
+    "Pourquoi les spaghettis ne gagnent jamais aux cartes ? Parce qu'ils ont toujours tort-illas !",
+    "Qu'est-ce qui est violet et qui attend ? Un raisin qui fait la queue !",
+    "Comment appelle-t-on un chat magicien ? Un abra-cat-dabra !",
+    "Que dit un crayon qui a mal ? J'ai la mine qui me fait souffrir !",
+    "Pourquoi les vampires ne vont jamais au restaurant ? Parce qu'ils préfèrent la cuisine du cou !",
+    "Qu'est-ce qui est rond, orange et qui fait peur aux sorcières ? Une citrouille armée !",
+    "Comment fait-on pour énerver un jardinier ? On lui marche sur les plates-bandes !",
+    "Que dit un réveil qui n'arrive pas à sonner ? J'ai raté mon heure de gloire !",
+    "Pourquoi les chaussures ne se disputent jamais ? Parce qu'elles sont toujours pied à pied !"
 };
-const int nombre_blagues = 110;
+const int nombre_blagues = 120;
+
+// Variable pour stocker la condition en cours d'évaluation
+int condition_result = 0;
+int in_condition_block = 0;
+int execute_then_block = 0;
 
 // Codes couleur ANSI
 void print_color(const char* color, const char* message) {
@@ -156,7 +179,7 @@ void print_color(const char* color, const char* message) {
         printf("\033[34m%s\033[0m\n", message);
     } else if (strcmp(color, "jaune") == 0) {
         printf("\033[33m%s\033[0m\n", message);
-    } else if (strcmp(color, "rose") == 0) {
+    } else if (strcmp(color, "rose") == 0 || strcmp(color, "pink") == 0) {
         printf("\033[35m%s\033[0m\n", message);
     } else if (strcmp(color, "cyan") == 0) {
         printf("\033[36m%s\033[0m\n", message);
@@ -211,28 +234,57 @@ void set_variable(const char* name, int value, const char* text_value, int is_nu
 int evaluate_math(const char* expression) {
     char expr[MAX_LINE_LENGTH];
     strcpy(expr, expression);
+    char* trimmed_expr = trim(expr);
     
     // Trouve l'opérateur
     char* op_pos = NULL;
     char op = 0;
     
-    if ((op_pos = strchr(expr, '+')) != NULL) {
+    // Chercher les opérateurs dans l'ordre de priorité
+    if ((op_pos = strstr(trimmed_expr, " + ")) != NULL) {
         op = '+';
-    } else if ((op_pos = strchr(expr, '-')) != NULL) {
+        op_pos += 1; // Pointer sur le '+'
+    } else if ((op_pos = strstr(trimmed_expr, " - ")) != NULL) {
         op = '-';
-    } else if ((op_pos = strchr(expr, '*')) != NULL) {
+        op_pos += 1; // Pointer sur le '-'
+    } else if ((op_pos = strstr(trimmed_expr, " * ")) != NULL) {
         op = '*';
-    } else if ((op_pos = strchr(expr, '/')) != NULL) {
+        op_pos += 1; // Pointer sur le '*'
+    } else if ((op_pos = strstr(trimmed_expr, " / ")) != NULL) {
         op = '/';
+        op_pos += 1; // Pointer sur le '/'
     }
     
     if (op_pos == NULL) {
-        return atoi(expr);
+        // Vérifier si c'est une variable
+        Variable* var = find_variable(trimmed_expr);
+        if (var && var->is_number) {
+            return var->value;
+        }
+        return atoi(trimmed_expr);
     }
     
     *op_pos = '\0';
-    int left = atoi(trim(expr));
-    int right = atoi(trim(op_pos + 1));
+    char* left_str = trim(expr);
+    char* right_str = trim(op_pos + 1);
+    
+    int left, right;
+    
+    // Évaluer la partie gauche
+    Variable* var_left = find_variable(left_str);
+    if (var_left && var_left->is_number) {
+        left = var_left->value;
+    } else {
+        left = atoi(left_str);
+    }
+    
+    // Évaluer la partie droite
+    Variable* var_right = find_variable(right_str);
+    if (var_right && var_right->is_number) {
+        right = var_right->value;
+    } else {
+        right = atoi(right_str);
+    }
     
     switch (op) {
         case '+': return left + right;
@@ -243,31 +295,112 @@ int evaluate_math(const char* expression) {
     }
 }
 
+// Fonction pour évaluer une condition
+int evaluate_condition(const char* condition) {
+    char cond[MAX_LINE_LENGTH];
+    strcpy(cond, condition);
+    char* trimmed_cond = trim(cond);
+    
+    // Chercher les opérateurs de comparaison
+    char* op_pos = NULL;
+    char op[3] = {0};
+    
+    if ((op_pos = strstr(trimmed_cond, " >= ")) != NULL) {
+        strcpy(op, ">=");
+        op_pos += 1;
+    } else if ((op_pos = strstr(trimmed_cond, " <= ")) != NULL) {
+        strcpy(op, "<=");
+        op_pos += 1;
+    } else if ((op_pos = strstr(trimmed_cond, " == ")) != NULL) {
+        strcpy(op, "==");
+        op_pos += 1;
+    } else if ((op_pos = strstr(trimmed_cond, " != ")) != NULL) {
+        strcpy(op, "!=");
+        op_pos += 1;
+    } else if ((op_pos = strstr(trimmed_cond, " > ")) != NULL) {
+        strcpy(op, ">");
+        op_pos += 1;
+    } else if ((op_pos = strstr(trimmed_cond, " < ")) != NULL) {
+        strcpy(op, "<");
+        op_pos += 1;
+    }
+    
+    if (op_pos == NULL) {
+        return 0; // Condition invalide
+    }
+    
+    *op_pos = '\0';
+    char* left_str = trim(cond);
+    char* right_str = trim(op_pos + strlen(op));
+    
+    int left, right;
+    
+    // Évaluer la partie gauche
+    Variable* var_left = find_variable(left_str);
+    if (var_left && var_left->is_number) {
+        left = var_left->value;
+    } else {
+        left = atoi(left_str);
+    }
+    
+    // Évaluer la partie droite
+    Variable* var_right = find_variable(right_str);
+    if (var_right && var_right->is_number) {
+        right = var_right->value;
+    } else {
+        right = atoi(right_str);
+    }
+    
+    // Appliquer l'opérateur
+    if (strcmp(op, ">") == 0) return left > right;
+    if (strcmp(op, "<") == 0) return left < right;
+    if (strcmp(op, ">=") == 0) return left >= right;
+    if (strcmp(op, "<=") == 0) return left <= right;
+    if (strcmp(op, "==") == 0) return left == right;
+    if (strcmp(op, "!=") == 0) return left != right;
+    
+    return 0;
+}
+
 // Fonction pour traiter les commandes Wsh
 void process_wsh(const char* message) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     // Enlever les guillemets si présents
     char clean_message[MAX_LINE_LENGTH];
     strcpy(clean_message, message);
+    char* trimmed = trim(clean_message);
     
-    if (clean_message[0] == '"' && clean_message[strlen(clean_message)-1] == '"') {
-        clean_message[strlen(clean_message)-1] = '\0';
-        memmove(clean_message, clean_message + 1, strlen(clean_message));
+    if (trimmed[0] == '"' && trimmed[strlen(trimmed)-1] == '"') {
+        trimmed[strlen(trimmed)-1] = '\0';
+        memmove(trimmed, trimmed + 1, strlen(trimmed));
     }
     
-    printf("%s\n", clean_message);
+    printf(" %s\n", trimmed);
 }
 
 // Fonction pour traiter les commandes Capté (mathématiques)
 void process_capte(const char* expression) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     int result = evaluate_math(expression);
     printf("%d\n", result);
 }
 
 // Fonction pour traiter quoicoubeh (blagues)
 void process_quoicoubeh(const char* command) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     if (strstr(command, "donne moi ma blague poto ou tes mort") != NULL) {
         srand(time(NULL));
         int index = rand() % nombre_blagues;
+        printf(" Voici une blague pour toi:\n");
         printf("🤣 %s\n", blagues[index]);
     } else {
         printf("Erreur: Tu dois écrire exactement 'quoicoubeh × donne moi ma blague poto ou tes mort' !\n");
@@ -276,31 +409,56 @@ void process_quoicoubeh(const char* command) {
 
 // Fonction pour traiter poto (conditions et variables)
 void process_poto(const char* condition) {
-    // Implémentation simplifiée pour les conditions
-    printf("Condition poto traitée: %s\n", condition);
+    char cond[MAX_LINE_LENGTH];
+    strcpy(cond, condition);
+    char* trimmed = trim(cond);
+    
+    if (strncmp(trimmed, "si ", 3) == 0) {
+        // Démarrer une nouvelle condition
+        in_condition_block = 1;
+        condition_result = evaluate_condition(trimmed + 3);
+        execute_then_block = condition_result;
+        printf("DEBUG: Condition '%s' = %s\n", trimmed + 3, condition_result ? "vraie" : "fausse");
+    }
+}
+
+// Fonction pour traiter "alors"
+void process_alors() {
+    // Cette fonction sera appelée quand on rencontre "alors"
+    // L'état est déjà géré par process_poto
 }
 
 // Fonction pour traiter watt (définition de variables)
 void process_watt(const char* definition) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     char var_name[MAX_VAR_NAME];
     char value_str[MAX_LINE_LENGTH];
     
     // Parser "variable = valeur"
     if (sscanf(definition, "%s = %[^\n]", var_name, value_str) == 2) {
+        char* trimmed_value = trim(value_str);
+        
         // Vérifier si c'est un nombre ou du texte
-        if (isdigit(value_str[0]) || (value_str[0] == '-' && isdigit(value_str[1]))) {
-            int value = atoi(value_str);
+        if (isdigit(trimmed_value[0]) || (trimmed_value[0] == '-' && isdigit(trimmed_value[1]))) {
+            int value = atoi(trimmed_value);
             set_variable(var_name, value, NULL, 1);
             printf("Variable '%s' définie avec la valeur %d\n", var_name, value);
         } else {
-            set_variable(var_name, 0, value_str, 0);
-            printf("Variable '%s' définie avec la valeur '%s'\n", var_name, value_str);
+            set_variable(var_name, 0, trimmed_value, 0);
+            printf("Variable '%s' définie avec la valeur %s\n", var_name, trimmed_value);
         }
     }
 }
 
 // Fonction pour traiter reuf (couleurs)
 void process_reuf(const char* command) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     char color[50];
     char message[MAX_LINE_LENGTH];
     char* trimmed_command = trim((char*)command);
@@ -327,16 +485,22 @@ void process_reuf(const char* command) {
 
 // Fonction pour traiter Cité (délais)
 void process_cite(const char* command) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     int ms;
     if (sscanf(command, "%d ms", &ms) == 1) {
-        printf("Délai de %d ms...\n", ms);
         usleep(ms * 1000); // convertir ms en microseconds
-        printf("Délai terminé!\n");
     }
 }
 
 // Fonction pour traiter crampté (modification de message)
 void process_crampte(const char* command) {
+    if (in_condition_block && !execute_then_block) {
+        return; // Ne pas exécuter si on est dans un bloc conditionnel false
+    }
+    
     char initial[MAX_LINE_LENGTH];
     char final[MAX_LINE_LENGTH];
     int ms;
@@ -352,6 +516,12 @@ void process_crampte(const char* command) {
 // Fonction principale pour traiter une ligne
 void process_line(char* line) {
     char* trimmed = trim(line);
+    
+    // Vérifier si c'est une ligne "alors"
+    if (strcmp(trimmed, "alors") == 0) {
+        process_alors();
+        return;
+    }
     
     if (trimmed[0] != '^') {
         return; // Ignorer les lignes qui ne commencent pas par ^

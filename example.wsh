@@ -3,13 +3,30 @@
 
 ^ watt : age = 16
 ^ watt : nom = "Kevin"
+^ watt : score = 25
 
+^ Wsh - Test des mathématiques :
 ^ Capté : 4 + 7
 ^ Capté : 10 - 3
 ^ Capté : 5 * 6
+^ Capté : 20 / 4
 
+^ Wsh - Test des couleurs :
 ^ reuf : couleur rouge - "Ce message est en rouge!"
 ^ reuf : couleur bleu - "Ce message est en bleu!"
+^ reuf : couleur vert - "Ce message est en vert!"
+^ reuf : couleur jaune - "Ce message est en jaune!"
+^ reuf : couleur rose - "Ce message est en rose!"
+
+^ Wsh - Test des conditions :
+^ poto : si age < 18
+alors  ^ Wsh - "Tu es mineur, petit délinquant!"
+
+^ poto : si score > 20
+alors  ^ Wsh - "Excellent score mon poto!"
+
+^ poto : si age == 16
+alors  ^ reuf : couleur vert - "Tu as exactement 16 ans!"
 
 ^ Cité - 1000 ms
 
@@ -17,5 +34,10 @@
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
 
 ^ crampté - "Chargement du swag...", 2000 ms , "Swag chargé avec succès!"
+
+^ Wsh - Test avec variables dans les calculs :
+^ watt : result = 0
+^ Capté : age + 5
+^ Capté : score * 2
 
 ^ Wsh - Programme terminé, à plus dans le bus poto!

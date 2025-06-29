@@ -66,3 +66,32 @@ pattern = "**/*.{c,h}"
 
 [languages.c.languageServer]
 start = "ccls"
+
+[workflows]
+runButton = "Run Wesh"
+
+[[workflows.workflow]]
+name = "Run Wesh"
+author = 10543762
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "make -s"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./main wsh example.wsh"
+
+[[workflows.workflow]]
+name = "Run Wesh"
+author = 10543762
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "make -s"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./main wsh example.wsh"
