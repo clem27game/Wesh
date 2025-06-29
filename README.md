@@ -1,6 +1,8 @@
 
 # 🔥 Langage de programmation WESH - Version ULTIME 🔥
 
+![Wesh](http://www.image-heberg.fr/files/17512184253964712824.png)
+
 ## Description
 
 **Wesh** est un langage de programmation ésotérique inspiré du vocabulaire de la cité. Il permet d'écrire des programmes avec une syntaxe absurde et amusante tout en gardant les fonctionnalités complètes d'un langage de programmation moderne.
@@ -8,7 +10,7 @@
 ## 🚀 Installation et compilation
 
 ### Prérequis
-- Compilateur C (gcc ou clang)
+- Cloné le repos github 
 - Make
 
 ### Compilation
@@ -18,7 +20,7 @@ make
 
 ### Exécution
 ```bash
-./main wsh <fichier.wsh>
+./Wesh/main wsh <fichier.wsh>
 ```
 
 ## 📝 Syntaxe du langage
@@ -149,24 +151,6 @@ fini
 fini
 ```
 
-### 11. **pélo** - Tableaux/Listes
-
-Crée et manipule des tableaux.
-
-**Syntaxe :**
-```wesh
-^ pélo : [nom] = [val1, val2, val3]    # Création
-^ pélo : affiche [nom]                  # Affichage
-```
-
-**Exemples :**
-```wesh
-^ pélo : nombres = [1, 2, 3, 4, 5]
-^ pélo : affiche nombres
-^ pélo : scores = [100, 85, 92]
-^ pélo : affiche scores
-```
-
 ### 12. **sah** - Input utilisateur
 
 Demande une saisie à l'utilisateur.
@@ -237,10 +221,6 @@ Zone de sécurité pour capturer les erreurs.
 # Input utilisateur
 ^ sah : "Quel est ton score ?" dans score
 
-# Tableaux
-^ pélo : notes = [15, 18, 12, 20]
-^ pélo : affiche notes
-
 # Conditions
 ^ poto : si age >= 18
 alors ^ reuf : couleur vert - "Tu es majeur!"
@@ -266,9 +246,6 @@ fini
 ^ daronne : écris "Programme terminé!" dans "log.txt"
 ^ daronne : lis "log.txt"
 
-# Délai et animation
-^ crampté - "Finalisation...", 1000 ms, "Terminé!"
-
 # Blague finale
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
 ```
@@ -281,14 +258,11 @@ fini
 - ✅ Variables numériques et textuelles (watt)
 - ✅ Conditions avec tous les opérateurs (poto)
 - ✅ Messages colorés 9 couleurs (reuf)
-- ✅ Délais temporels (Cité)
-- ✅ Modification de messages avec délai (crampté)
 - ✅ Base de données de blagues aléatoires (quoicoubeh)
 
 ### Nouvelles fonctionnalités avancées
 - 🔥 **Boucles WHILE** (bogoss) - Répétition conditionnelle
 - 🔥 **Boucles FOR** (gadjo) - Répétition avec compteur
-- 🔥 **Tableaux/Listes** (pélo) - Stockage de données multiples
 - 🔥 **Input utilisateur** (sah) - Interaction avec l'utilisateur
 - 🔥 **Assertions** (wAllah) - Vérification de conditions
 - 🔥 **Gestion de fichiers** (daronne) - Lecture/écriture de fichiers
@@ -331,9 +305,7 @@ fini
 
 ### Manipuler des fichiers
 ```wesh
-^ pélo : scores = [18, 15, 20, 12]
 ^ daronne : écris "Début du fichier" dans "results.txt"
-^ pélo : affiche scores
 ^ daronne : écris "Fin du fichier" dans "results.txt"
 ^ daronne : lis "results.txt"
 ```
@@ -359,9 +331,8 @@ Le langage Wesh gère maintenant tous types d'erreurs :
 ## 📜 Historique des versions
 
 ### Version 2.0 - ULTIME EDITION
-- 🔥 Ajout de 7 nouvelles fonctionnalités majeures
+- 🔥 Ajout de 6 nouvelles fonctionnalités majeures
 - 🔥 Boucles while et for complètement fonctionnelles
-- 🔥 Système de tableaux avec affichage
 - 🔥 Input utilisateur interactif
 - 🔥 Assertions et vérifications
 - 🔥 Gestion complète de fichiers
