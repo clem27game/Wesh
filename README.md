@@ -100,10 +100,6 @@ Crée une pause dans l'exécution.
 ^ Cité - [délai] ms
 ```
 
-### 8. **crampté** - Modification de message
-
-Affiche un message initial, attend, puis le remplace.
-
 **Syntaxe :**
 ```wesh
 ^ crampté - "[message_initial]", [délai] ms , "[message_final]"
