@@ -1,0 +1,56 @@
+
+# Test des corrections spécifiques pour Wesh
+^ Wsh - 🔧 Test des corrections apportées 🔧
+
+# Test 1: crampté corrigé
+^ Wsh - === Test crampté ===
+^ crampté - "Chargement du swag...", 1500 ms, "Swag chargé!"
+^ crampté - "Compilation...", 800 ms, "Prêt!"
+
+# Test 2: Cité corrigé  
+^ Wsh - === Test Cité ===
+^ Cité - 1000 ms
+^ Wsh - Délai 1000ms terminé
+^ Cité - 500
+^ Wsh - Délai 500ms terminé
+
+# Test 3: Boucles imbriquées bogoss/gadjo
+^ Wsh - === Test boucles imbriquées ===
+^ watt : outer = 1
+^ bogoss : tant que outer <= 2
+^ Wsh - Boucle while externe:
+^ Capté : outer
+^ gadjo : inner de 1 à 3
+^ Wsh - Boucle for interne:
+^ Capté : inner
+fini
+^ watt : outer = outer + 1
+fini
+
+# Test 4: pélo avec nouvelles fonctionnalités
+^ Wsh - === Test pélo avancé ===
+^ pélo : test_array = [10, 20, 30]
+^ pélo : affiche test_array
+^ pélo : get test_array[1]
+^ pélo : set test_array[0] = 99
+^ pélo : affiche test_array
+^ pélo : ajoute 40 dans test_array
+^ pélo : affiche test_array
+^ pélo : taille test_array
+^ pélo : tri test_array
+^ pélo : affiche test_array
+
+# Test 5: Conditions avec strings
+^ Wsh - === Test conditions strings ===
+^ watt : nom = "Kevin"
+^ poto : si nom == "Kevin"
+alors ^ reuf : couleur vert - "Salut Kevin!"
+
+# Test 6: Variables multiples types
+^ watt : entier = 42
+^ watt : flottant = 3.14159
+^ watt : chaine = "Test"
+^ teubé : variables
+
+^ Wsh - 
+^ reuf : couleur cyan - "✅ Toutes les corrections fonctionnent!"
