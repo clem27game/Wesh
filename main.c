@@ -496,6 +496,7 @@ void process_cite(const char* command) {
     } else {
         printf("❌ Erreur: format incorrect pour Cité. Utilise: ^ Cité - [nombre] ms\n");
         printf("📝 Exemple: ^ Cité - 1000 ms\n");
+        printf("🔍 Debug: commande reçue = '%s'\n", trimmed_command);
     }
 }
 
@@ -513,16 +514,18 @@ void process_crampte(const char* command) {
     strcpy(trimmed_command, command);
     char* cmd = trim(trimmed_command);
     
+    // Parser plus flexible pour crampté
     if (sscanf(cmd, "\"%[^\"]\", %d ms, \"%[^\"]\"", initial, &ms, final) == 3 ||
-        sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3) {
+        sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3 ||
+        sscanf(cmd, "\"%[^\"]\"%*[ ]*,%*[ ]*%d%*[ ]*ms%*[ ]*,%*[ ]*\"%[^\"]\"", initial, &ms, final) == 3) {
         
         printf("🔄 %s", initial);
         fflush(stdout);
         usleep(ms * 1000);
         
-        int initial_len = strlen(initial) + 3;
+        // Effacement plus robuste
         printf("\r");
-        for(int i = 0; i < initial_len + 10; i++) {
+        for(int i = 0; i < 80; i++) {  // Effacer 80 caractères
             printf(" ");
         }
         printf("\r✅ %s\n", final);
@@ -530,6 +533,7 @@ void process_crampte(const char* command) {
     } else {
         printf("❌ Erreur de syntaxe crampté! Utilise: ^ crampté - \"message initial\", [délai] ms , \"message final\"\n");
         printf("📝 Exemple: ^ crampté - \"Chargement...\", 1000 ms , \"Terminé!\"\n");
+        printf("🔍 Debug: commande reçue = '%s'\n", cmd);
     }
 }
 
@@ -819,7 +823,8 @@ void process_line(char* line) {
     } else if (strncmp(command, "zonzon :", 8) == 0) {
         process_zonzon(trim(command + 8));
     } else {
-        printf("❌ Commande inconnue: %s\n", command);
+        printf("❌ Commande inconnue: '%s'\n", command);
+        printf("🔍 Commandes disponibles: Wsh, Capté, watt, poto, reuf, Cité, crampté, bogoss, gadjo, pélo, sah, wAllah, daronne, zonzon, quoicoubeh\n");
     }
 }
 

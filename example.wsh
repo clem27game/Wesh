@@ -1,5 +1,5 @@
 
-# Exemple complet du langage Wesh - Version étendue avec toutes les fonctionnalités
+# Exemple complet du langage Wesh - Version CORRIGÉE
 # Fichier de démonstration pour toutes les fonctionnalités
 
 ^ Wsh - 🔥 Salut mon poto, bienvenue dans le langage Wesh ULTIME! 🔥
@@ -26,17 +26,18 @@ alors ^ reuf : couleur jaune - "Tu es mineur mon poto!"
 ^ poto : si score >= 100
 alors ^ Wsh - Score parfait, tu gères!
 
-^ Wsh - === NOUVELLES FONCTIONNALITÉS ===
+^ Wsh - === Test des délais (CORRIGÉ) ===
+^ Cité - 1000 ms
+^ Wsh - Délai terminé!
+
+^ Wsh - === Test de modification de message (CORRIGÉ) ===
+^ crampté - "Chargement du swag...", 1500 ms, "Swag chargé avec succès!"
 
 ^ Wsh - === Test des tableaux (pélo) ===
 ^ pélo : nombres = [1, 2, 3, 4, 5]
 ^ pélo : affiche nombres
 ^ pélo : scores = [100, 85, 92, 78]
 ^ pélo : affiche scores
-
-^ Wsh - === Test de l'input utilisateur (sah) ===
-^ sah : "Comment tu t'appelles mon poto ?" dans pseudo
-^ Wsh - Salut à toi!
 
 ^ Wsh - === Test des assertions (wAllah) ===
 ^ wAllah : age > 10, "Tu as plus de 10 ans"
@@ -60,12 +61,6 @@ fini
 ^ Capté : compteur
 ^ watt : compteur = compteur + 1
 fini
-
-^ Wsh - === Test des délais ===
-^ Cité - 500 ms
-
-^ Wsh - === Test de modification de message ===
-^ crampté - "Chargement du swag...", 1000 ms, "Swag chargé avec succès!"
 
 ^ Wsh - === Test des blagues ===
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
