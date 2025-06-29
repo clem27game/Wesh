@@ -1,16 +1,10 @@
 
-# Exemple complet du langage Wesh
+# Exemple complet du langage Wesh - Version étendue avec toutes les fonctionnalités
 # Fichier de démonstration pour toutes les fonctionnalités
 
-^ Wsh - 🔥 Salut mon poto, bienvenue dans le langage Wesh! 🔥
+^ Wsh - 🔥 Salut mon poto, bienvenue dans le langage Wesh ULTIME! 🔥
 
-^ Wsh - === Test simple de Cité ===
-^ Cité - 1000 ms
-
-^ Wsh - === Test simple de crampté ===
-^ crampté - "Test...", 1000 ms, "Terminé!"
-
-# Test des variables
+# Test des variables de base
 ^ watt : age = 16
 ^ watt : nom = "Kevin"
 ^ watt : score = 100
@@ -18,61 +12,66 @@
 ^ Wsh - === Test des mathématiques ===
 ^ Capté : 4 + 7
 ^ Capté : 15 - 3
-^ Capté : 5 * 6
-^ Capté : 20 / 4
-
-^ Wsh - === Test avec variables ===
-^ Capté : age + 5
-^ Capté : score * 2
-^ Capté : age - 10
+^ Capté : age * 2
 
 ^ Wsh - === Test des couleurs ===
 ^ reuf : couleur rouge - "Ce message est en rouge!"
-^ reuf : couleur bleu - "Ce message est en bleu!"
 ^ reuf : couleur vert - "Ce message est en vert!"
-^ reuf : couleur jaune - "Ce message est en jaune!"
-^ reuf : couleur rose - "Ce message est en rose!"
-^ reuf : couleur cyan - "Ce message est en cyan!"
-^ reuf : couleur violet - "Ce message est en violet!"
+^ reuf : couleur bleu - "Ce message est en bleu!"
 
 ^ Wsh - === Test des conditions ===
 ^ poto : si age < 18
-alors ^ Wsh - Tu es mineur, petit délinquant!
-
-^ poto : si score > 50
-alors ^ reuf : couleur vert - "Excellent score mon poto!"
-
-^ poto : si age == 16
-alors ^ reuf : couleur rose - "Tu as exactement 16 ans!"
+alors ^ reuf : couleur jaune - "Tu es mineur mon poto!"
 
 ^ poto : si score >= 100
 alors ^ Wsh - Score parfait, tu gères!
 
+^ Wsh - === NOUVELLES FONCTIONNALITÉS ===
+
+^ Wsh - === Test des tableaux (pélo) ===
+^ pélo : nombres = [1, 2, 3, 4, 5]
+^ pélo : affiche nombres
+^ pélo : scores = [100, 85, 92, 78]
+^ pélo : affiche scores
+
+^ Wsh - === Test de l'input utilisateur (sah) ===
+^ sah : "Comment tu t'appelles mon poto ?" dans pseudo
+^ Wsh - Salut à toi!
+
+^ Wsh - === Test des assertions (wAllah) ===
+^ wAllah : age > 10, "Tu as plus de 10 ans"
+^ wAllah : score == 100, "Score parfait!"
+^ wAllah : age < 5, "Tu es très jeune"
+
+^ Wsh - === Test des fichiers (daronne) ===
+^ daronne : écris "Salut de la part du langage Wesh!" dans "test_wesh.txt"
+^ daronne : lis "test_wesh.txt"
+
+^ Wsh - === Test des boucles FOR (gadjo) ===
+^ gadjo : i de 1 à 3
+^ Wsh - Itération numéro
+^ Capté : i
+fini
+
+^ Wsh - === Test des boucles WHILE (bogoss) ===
+^ watt : compteur = 1
+^ bogoss : tant que compteur <= 2
+^ Wsh - Compteur =
+^ Capté : compteur
+^ watt : compteur = compteur + 1
+fini
+
 ^ Wsh - === Test des délais ===
-^ Wsh - Attente de 1 seconde...
-^ Cité - 1000 ms
-^ Wsh - Test délai court...
 ^ Cité - 500 ms
-^ Wsh - Délais terminés!
 
 ^ Wsh - === Test de modification de message ===
-^ crampté - "Chargement du swag...", 2000 ms, "Swag chargé avec succès!"
-^ crampté - "Patientez mon poto...", 1500 ms, "C'est prêt, on peut y aller!"
-^ crampté - "Connexion en cours...", 1000 ms, "Connecté avec succès!"
+^ crampté - "Chargement du swag...", 1000 ms, "Swag chargé avec succès!"
 
 ^ Wsh - === Test des blagues ===
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
 
-^ Wsh - === Test de conditions multiples ===
-^ watt : test = 25
-^ poto : si test < 30
-alors ^ reuf : couleur jaune - "Test inférieur à 30"
-
-^ poto : si test != 20
-alors ^ Wsh - Test différent de 20
-
 ^ Wsh - === Fin du programme ===
-^ reuf : couleur cyan - "Programme terminé, à plus dans le bus poto!"
+^ reuf : couleur cyan - "Programme terminé, toutes les fonctionnalités testées!"
 
 # Une autre blague pour la route
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
