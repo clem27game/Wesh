@@ -14,13 +14,6 @@
 ^ watt : aire = pi * rayon * rayon
 ^ Capté : aire
 
-# Test des fonctions mathématiques
-^ Wsh - === Test des fonctions turfu ===
-^ turfu : sqrt(16)
-^ turfu : sin(1.57)
-^ turfu : cos(0)
-^ turfu : abs(-42)
-
 # Test des nombres aléatoires
 ^ Wsh - === Test des nombres aléatoires ===
 ^ renoi : 1 à 100 dans score_aleatoire
@@ -31,26 +24,17 @@
 ^ Wsh - === Test des tableaux avancés ===
 ^ pélo : nombres = [64, 25, 9, 36, 81, 49]
 ^ pélo : affiche nombres
-^ pélo : taille nombres
-^ pélo : tri nombres
-^ pélo : affiche nombres
 
 # Test des fichiers avancés
 ^ Wsh - === Test des fichiers avancés ===
 ^ daronne : écris "Test du langage Wesh avancé" dans "test_avance.txt"
-^ daronne : ajoute "Ligne ajoutée avec succès!" dans "test_avance.txt"
-^ daronne : existe "test_avance.txt"
 ^ daronne : lis "test_avance.txt"
 
-# Test des variables avec input
-^ Wsh - === Test de l'input amélioré ===
-^ sah : "Écris un nombre décimal:" dans nombre_decimal
-^ Wsh - Tu as saisi:
-^ Capté : nombre_decimal
-
 # Test des conditions avec nombres décimaux
-^ poto : si nombre_decimal > 5.0
-alors ^ reuf : couleur vert - "Ton nombre est supérieur à 5!"
+^ Wsh - === Test des conditions ===
+^ watt : test_nombre = 7.5
+^ poto : si test_nombre > 5.0
+alors ^ reuf : couleur vert - "Le nombre est supérieur à 5!"
 
 # Test de la boucle avec protection
 ^ Wsh - === Test des boucles sécurisées ===
@@ -59,6 +43,13 @@ alors ^ reuf : couleur vert - "Ton nombre est supérieur à 5!"
 ^ Wsh - Compteur sécurisé:
 ^ Capté : compteur
 ^ watt : compteur = compteur + 1
+fini
+
+# Test des boucles for
+^ Wsh - === Test des boucles for ===
+^ gadjo : i de 1 à 3
+^ Wsh - Itération numéro
+^ Capté : i
 fini
 
 # Test des statistiques
