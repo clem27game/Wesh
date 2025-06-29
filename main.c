@@ -442,13 +442,21 @@ void process_crampte(const char* command) {
     char final[MAX_LINE_LENGTH];
     int ms;
     
-    if (sscanf(command, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3) {
-        printf("%s", initial);
+    // Trimmer la commande
+    char trimmed_command[MAX_LINE_LENGTH];
+    strcpy(trimmed_command, command);
+    char* cmd = trim(trimmed_command);
+    
+    if (sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3) {
+        printf("🔄 %s", initial);
         fflush(stdout);
         usleep(ms * 1000);
-        printf("\r\033[K%s\n", final); // \033[K efface la ligne avant d'écrire
+        // Effacer la ligne précédente et afficher le nouveau message
+        printf("\r\033[2K✅ %s\n", final);
+        fflush(stdout);
     } else {
         printf("❌ Erreur de syntaxe crampté! Utilise: ^ crampté - \"message initial\", [délai] ms , \"message final\"\n");
+        printf("📝 Exemple: ^ crampté - \"Chargement...\", 1000 ms , \"Terminé!\"\n");
     }
 }
 
