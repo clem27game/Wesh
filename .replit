@@ -1,5 +1,6 @@
+
 compile = ["make", "-s"]
-run = "./main"
+run = "./main wsh example.wsh"
 entrypoint = "main.c"
 hidden = ["main", "main-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
 
@@ -84,7 +85,7 @@ task = "shell.exec"
 args = "./main wsh example.wsh"
 
 [[workflows.workflow]]
-name = "Run Wesh"
+name = "Test Simple"
 author = 10543762
 mode = "sequential"
 
@@ -94,4 +95,17 @@ args = "make -s"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "./main wsh example.wsh"
+args = "./main wsh wsh.wsh"
+
+[[workflows.workflow]]
+name = "Test Advanced"
+author = 10543762
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "make -s"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./main wsh test_advanced.wsh"
