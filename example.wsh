@@ -1,43 +1,68 @@
 
+# Exemple complet du langage Wesh
+# Fichier de démonstration pour toutes les fonctionnalités
+
 ^ Wsh - Salut mon poto, bienvenue dans le langage Wesh!
 
+# Test des variables
 ^ watt : age = 16
 ^ watt : nom = "Kevin"
-^ watt : score = 25
+^ watt : score = 100
 
-^ Wsh - Test des mathématiques :
+^ Wsh - === Test des mathématiques ===
 ^ Capté : 4 + 7
-^ Capté : 10 - 3
+^ Capté : 15 - 3
 ^ Capté : 5 * 6
 ^ Capté : 20 / 4
 
-^ Wsh - Test des couleurs :
+^ Wsh - === Test avec variables ===
+^ Capté : age + 5
+^ Capté : score * 2
+^ Capté : age - 10
+
+^ Wsh - === Test des couleurs ===
 ^ reuf : couleur rouge - "Ce message est en rouge!"
 ^ reuf : couleur bleu - "Ce message est en bleu!"
 ^ reuf : couleur vert - "Ce message est en vert!"
 ^ reuf : couleur jaune - "Ce message est en jaune!"
 ^ reuf : couleur rose - "Ce message est en rose!"
+^ reuf : couleur cyan - "Ce message est en cyan!"
+^ reuf : couleur violet - "Ce message est en violet!"
 
-^ Wsh - Test des conditions :
+^ Wsh - === Test des conditions ===
 ^ poto : si age < 18
 alors  ^ Wsh - "Tu es mineur, petit délinquant!"
 
-^ poto : si score > 20
-alors  ^ Wsh - "Excellent score mon poto!"
+^ poto : si score > 50
+alors  ^ reuf : couleur vert - "Excellent score mon poto!"
 
 ^ poto : si age == 16
-alors  ^ reuf : couleur vert - "Tu as exactement 16 ans!"
+alors  ^ reuf : couleur rose - "Tu as exactement 16 ans!"
 
+^ poto : si score >= 100
+alors  ^ Wsh - "Score parfait, tu gères!"
+
+^ Wsh - === Test des délais ===
+^ Wsh - "Attente de 1 seconde..."
 ^ Cité - 1000 ms
+^ Wsh - "C'est fini!"
 
-^ Wsh - Voici une blague pour toi:
-^ quoicoubeh × donne moi ma blague poto ou tes mort
-
+^ Wsh - === Test de modification de message ===
 ^ crampté - "Chargement du swag...", 2000 ms , "Swag chargé avec succès!"
 
-^ Wsh - Test avec variables dans les calculs :
-^ watt : result = 0
-^ Capté : age + 5
-^ Capté : score * 2
+^ Wsh - === Test des blagues ===
+^ quoicoubeh × donne moi ma blague poto ou tes mort
 
-^ Wsh - Programme terminé, à plus dans le bus poto!
+^ Wsh - === Test de conditions multiples ===
+^ watt : test = 25
+^ poto : si test < 30
+alors  ^ reuf : couleur jaune - "Test inférieur à 30"
+
+^ poto : si test != 20
+alors  ^ Wsh - "Test différent de 20"
+
+^ Wsh - === Fin du programme ===
+^ reuf : couleur cyan - "Programme terminé, à plus dans le bus poto!"
+
+# Une autre blague pour la route
+^ quoicoubeh × donne moi ma blague poto ou tes mort

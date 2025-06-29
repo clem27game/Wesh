@@ -22,7 +22,7 @@ typedef struct {
 Variable variables[MAX_VARIABLES];
 int var_count = 0;
 
-// Base de données de blagues
+// Base de données de blagues étendues
 const char* blagues[MAX_BLAGUES] = {
     "Pourquoi les plongeurs plongent-ils toujours en arrière et jamais en avant ? Parce que sinon, ils tombent dans le bateau !",
     "Que dit un escargot quand il croise une limace ? Regarde le nudiste !",
@@ -85,86 +85,11 @@ const char* blagues[MAX_BLAGUES] = {
     "Comment appelle-t-on un taureau qui fait de la peinture ? Un taureau-pinceau !",
     "Que dit un escargot quand il fait de l'auto-stop ? Es-cargo !",
     "Pourquoi les fantômes ne mentent jamais ? Parce qu'on peut voir à travers eux !",
-    "Qu'est-ce qui a un lit mais ne dort jamais ? Une rivière !",
-    "Comment fait-on pour réveiller Lady Gaga ? On lui Ra-Ra-Raspoutine !",
-    "Que dit un mec qui rentre dans un café ? Plouf !",
-    "Pourquoi les voleurs ne jouent jamais aux cartes ? Parce qu'ils préfèrent voler !",
-    "Qu'est-ce qui est tout mou et qui boit de la bière ? Un alcoolique !",
-    "Comment appelle-t-on un nain qui distribue le courrier ? Un mini-postier !",
-    "Que dit un pingouin qui mange de la salade ? Ça glisse !",
-    "Pourquoi les plantes grasses sont toujours de bonne humeur ? Parce qu'elles ne manquent d'eau !",
-    "Qu'est-ce qui est marron et qui fait du bruit dans l'eau ? Un marron qui tombe à l'eau !",
-    "Comment fait-on pour savoir qu'il y a un éléphant dans son frigo ? Il y a des traces de pas dans le beurre !",
-    "Que dit un parapluie à l'envers ? Je suis sur le toit !",
-    "Pourquoi les astronautes ne font jamais de barbecue dans l'espace ? Parce qu'il n'y a pas d'air !",
-    "Qu'est-ce qui ressemble à un demi-chat ? L'autre moitié !",
-    "Comment appelle-t-on un chat tombé dans un pot de peinture rouge ? Un chat-mallow rouge !",
-    "Que dit un café qui a froid ? Je suis un peu latte !",
-    "Pourquoi les poissons rouges ne jouent jamais au poker ? Parce qu'ils ont peur du bluff !",
-    "Qu'est-ce qui est transparent et qui court vite ? L'eau qui court !",
-    "Comment fait-on pour faire pleurer un oignon ? On lui raconte sa vie !",
-    "Que dit un yaourt quand on l'ouvre ? Brassé de vous connaître !",
-    "Pourquoi les sorcières volent sur des balais ? Parce que les aspirateurs ont un fil trop court !",
-    "Qu'est-ce qui est toujours devant mais qu'on ne peut jamais rattraper ? L'avenir !",
-    "Comment appelle-t-on un chien qui vend des médicaments ? Un pharmachien !",
-    "Que dit un thé qui a mal ? Aïe-thé !",
-    "Pourquoi les cyclistes roulent-ils si vite ? Parce qu'ils ont peur qu'on leur vole leur vélo !",
-    "Qu'est-ce qui a des yeux mais ne voit jamais ? Une pomme de terre !",
-    "Comment fait-on pour qu'un chat arrête de miauler ? On lui donne un chat-pal !",
-    "Que dit un citron qui fait du yoga ? Je suis pressé !",
-    "Pourquoi les cannibales ne mangent jamais les clowns ? Parce qu'ils ont un goût de rigolo !",
-    "Qu'est-ce qui est noir, blanc et rouge et qui ne peut pas se retourner ? Une religieuse dans un ascenseur !",
-    "Comment appelle-t-on un boomerang qui marche ? Un stick !",
-    "Que dit un moustique quand il voit un chauve ? Terrain d'atterrissage en vue !",
-    "Pourquoi les maths sont tristes ? Parce qu'elles ont trop de problèmes !",
-    "Qu'est-ce qui a quatre pattes et qui ne marche pas ? Une table !",
-    "Comment fait-on pour rendre un tissu intelligent ? On lui donne de l'éducation !",
-    "Que dit un cannibale qui n'a plus faim ? J'en ai assez mangé !",
-    "Pourquoi les abeilles font-elles du miel ? Parce qu'elles ne savent pas faire de confiture !",
-    "Qu'est-ce qui monte plus haut qu'un avion ? Le pilote de l'avion !",
-    "Comment appelle-t-on un pingouin dans le désert ? Perdu !",
-    "Que dit un épouvantail qui a réussi ? J'ai décroché un job !",
-    "Pourquoi les violonistes mettent leurs instruments au frigo ? Pour avoir de la musique fraîche !",
-    "Qu'est-ce qui est petit, vert et qui fait du bruit ? Un petit pois qui pète !",
-    "Comment fait-on pour attraper un poisson rouge dans un aquarium bleu ? Avec un filet !",
-    "Que dit un fromage qui fait du sport ? Je suis en forme !",
-    "Pourquoi les baleines chantent ? Parce qu'elles ne savent pas siffler !",
-    "Qu'est-ce qui a un cou mais pas de tête ? Une bouteille !",
-    "Comment appelle-t-on un chat qui a bu du café ? Un chat-féiné !",
-    "Que dit un arbre qui a soif ? J'ai besoin d'être arrosé !",
-    "Pourquoi les bananes portent de la crème solaire ? Pour ne pas peler !",
-    "Qu'est-ce qui est toujours en retard ? Demain !",
-    "Comment fait-on pour faire danser un œuf ? On met un peu de soul !",
-    "Que dit un hibou qui a mal aux yeux ? Aïe-hibou !",
-    "Pourquoi les pirates ne savent jamais l'alphabet en entier ? Parce qu'ils se perdent en mer (M) !",
-    "Qu'est-ce qui ressemble à un chat, miaule comme un chat mais n'est pas un chat ? Une chatte !",
-    "Comment appelle-t-on un dinosaure qui fait du bruit en dormant ? Un dino-ronfleur !",
-    "Que dit un escargot qui va vite ? Ça y est, je suis lancé !",
-    "Pourquoi les scarabées ne vont jamais au cinéma ? Parce qu'ils préfèrent les coléo-spectacles !",
-    "Qu'est-ce qui a des racines mais ne pousse jamais ? Vos cheveux !",
-    "Comment appelle-t-on un poisson qui porte une couronne ? Un roi-poisson !",
-    "Que dit un nuage qui s'ennuie ? Il pleut que je m'amuse !",
-    "Pourquoi les mathématiciens ne bronzent jamais ? Parce qu'ils restent toujours à l'ombre des problèmes !",
-    "Qu'est-ce qui est jaune et qui fait du bruit ? Un canari avec un marteau !",
-    "Comment appelle-t-on un sorcier sans baguette ? Un sorcier désarmé !",
-    "Que dit une chaussette trouée ? J'ai un trou de mémoire !",
-    "Pourquoi les robots ne sont jamais malades ? Parce qu'ils ont de bons anti-virus !",
-    "Qu'est-ce qui est grand, gris et qui ne sert à rien ? Un éléphant qui fait grève !",
-    "Comment fait-on pour attraper un ordinateur ? Avec un filet-work !",
-    "Que dit un calendrier fatigué ? J'ai mes jours !",
-    "Pourquoi les spaghettis ne gagnent jamais aux cartes ? Parce qu'ils ont toujours tort-illas !",
-    "Qu'est-ce qui est violet et qui attend ? Un raisin qui fait la queue !",
-    "Comment appelle-t-on un chat magicien ? Un abra-cat-dabra !",
-    "Que dit un crayon qui a mal ? J'ai la mine qui me fait souffrir !",
-    "Pourquoi les vampires ne vont jamais au restaurant ? Parce qu'ils préfèrent la cuisine du cou !",
-    "Qu'est-ce qui est rond, orange et qui fait peur aux sorcières ? Une citrouille armée !",
-    "Comment fait-on pour énerver un jardinier ? On lui marche sur les plates-bandes !",
-    "Que dit un réveil qui n'arrive pas à sonner ? J'ai raté mon heure de gloire !",
-    "Pourquoi les chaussures ne se disputent jamais ? Parce qu'elles sont toujours pied à pied !"
+    "Qu'est-ce qui a un lit mais ne dort jamais ? Une rivière !"
 };
-const int nombre_blagues = 120;
+const int nombre_blagues = 59;
 
-// Variable pour stocker la condition en cours d'évaluation
+// Variables pour la gestion des conditions
 int condition_result = 0;
 int in_condition_block = 0;
 int execute_then_block = 0;
@@ -185,6 +110,10 @@ void print_color(const char* color, const char* message) {
         printf("\033[36m%s\033[0m\n", message);
     } else if (strcmp(color, "blanc") == 0) {
         printf("\033[37m%s\033[0m\n", message);
+    } else if (strcmp(color, "violet") == 0) {
+        printf("\033[35m%s\033[0m\n", message);
+    } else if (strcmp(color, "orange") == 0) {
+        printf("\033[33m%s\033[0m\n", message);
     } else {
         printf("%s\n", message);
     }
@@ -398,12 +327,12 @@ void process_quoicoubeh(const char* command) {
     }
     
     if (strstr(command, "donne moi ma blague poto ou tes mort") != NULL) {
-        srand(time(NULL));
+        srand(time(NULL) + rand()); // Amélioration du seed
         int index = rand() % nombre_blagues;
-        printf(" Voici une blague pour toi:\n");
-        printf("🤣 %s\n", blagues[index]);
+        printf(" 🤣 Voici une blague pour toi:\n");
+        printf("💬 %s\n", blagues[index]);
     } else {
-        printf("Erreur: Tu dois écrire exactement 'quoicoubeh × donne moi ma blague poto ou tes mort' !\n");
+        printf("❌ Erreur: Tu dois écrire exactement 'quoicoubeh × donne moi ma blague poto ou tes mort' !\n");
     }
 }
 
@@ -418,7 +347,6 @@ void process_poto(const char* condition) {
         in_condition_block = 1;
         condition_result = evaluate_condition(trimmed + 3);
         execute_then_block = condition_result;
-        printf("DEBUG: Condition '%s' = %s\n", trimmed + 3, condition_result ? "vraie" : "fausse");
     }
 }
 
@@ -445,10 +373,10 @@ void process_watt(const char* definition) {
         if (isdigit(trimmed_value[0]) || (trimmed_value[0] == '-' && isdigit(trimmed_value[1]))) {
             int value = atoi(trimmed_value);
             set_variable(var_name, value, NULL, 1);
-            printf("Variable '%s' définie avec la valeur %d\n", var_name, value);
+            printf("✅ Variable '%s' définie avec la valeur %d\n", var_name, value);
         } else {
             set_variable(var_name, 0, trimmed_value, 0);
-            printf("Variable '%s' définie avec la valeur %s\n", var_name, trimmed_value);
+            printf("✅ Variable '%s' définie avec la valeur %s\n", var_name, trimmed_value);
         }
     }
 }
@@ -478,8 +406,8 @@ void process_reuf(const char* command) {
         print_color(color, clean_msg);
     } 
     else {
-        printf("Erreur de syntaxe reuf! Utilise: ^ reuf : couleur [couleur] - \"[message]\"\n");
-        printf("Couleurs disponibles: rouge, vert, bleu, jaune, rose, cyan, blanc\n");
+        printf("❌ Erreur de syntaxe reuf! Utilise: ^ reuf : couleur [couleur] - \"[message]\"\n");
+        printf("🎨 Couleurs disponibles: rouge, vert, bleu, jaune, rose, cyan, blanc, violet, orange\n");
     }
 }
 
@@ -491,7 +419,10 @@ void process_cite(const char* command) {
     
     int ms;
     if (sscanf(command, "%d ms", &ms) == 1) {
+        printf("⏱️  Délai de %d ms...\n", ms);
         usleep(ms * 1000); // convertir ms en microseconds
+    } else {
+        printf("❌ Erreur: format incorrect pour Cité. Utilise: ^ Cité - [nombre] ms\n");
     }
 }
 
@@ -509,13 +440,20 @@ void process_crampte(const char* command) {
         printf("%s", initial);
         fflush(stdout);
         usleep(ms * 1000);
-        printf("\r%s\n", final);
+        printf("\r\033[K%s\n", final); // \033[K efface la ligne avant d'écrire
+    } else {
+        printf("❌ Erreur de syntaxe crampté! Utilise: ^ crampté - \"message initial\", [délai] ms , \"message final\"\n");
     }
 }
 
 // Fonction principale pour traiter une ligne
 void process_line(char* line) {
     char* trimmed = trim(line);
+    
+    // Ignorer les lignes vides ou les commentaires
+    if (strlen(trimmed) == 0 || trimmed[0] == '#') {
+        return;
+    }
     
     // Vérifier si c'est une ligne "alors"
     if (strcmp(trimmed, "alors") == 0) {
@@ -547,7 +485,7 @@ void process_line(char* line) {
     } else if (strncmp(command, "crampté -", 9) == 0) {
         process_crampte(command + 9);
     } else {
-        printf("Commande inconnue: %s\n", command);
+        printf("❌ Commande inconnue: %s\n", command);
     }
 }
 
@@ -559,7 +497,7 @@ int main(int argc, char* argv[]) {
     
     FILE* file = fopen(argv[2], "r");
     if (file == NULL) {
-        printf("Erreur: impossible d'ouvrir le fichier %s\n", argv[2]);
+        printf("❌ Erreur: impossible d'ouvrir le fichier %s\n", argv[2]);
         return 1;
     }
     
@@ -570,9 +508,15 @@ int main(int argc, char* argv[]) {
         // Enlever le retour à la ligne
         line[strcspn(line, "\n")] = 0;
         process_line(line);
+        
+        // Réinitialiser le contexte conditionnel après chaque ligne si nécessaire
+        if (in_condition_block && strstr(line, "alors") == NULL && strstr(line, "poto") == NULL) {
+            in_condition_block = 0;
+            execute_then_block = 0;
+        }
     }
     
     fclose(file);
-    printf("\n🎯 Programme Wesh terminé! 🎯\n");
+    printf("\n 🎯 Programme Wesh terminé, à plus dans le bus poto! 🎯\n");
     return 0;
 }
