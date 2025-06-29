@@ -424,11 +424,16 @@ void process_cite(const char* command) {
     }
     
     int ms;
-    if (sscanf(command, "%d ms", &ms) == 1) {
-        printf("⏱️  Délai de %d ms...\n", ms);
+    char* trimmed_command = trim((char*)command);
+    
+    if (sscanf(trimmed_command, "%d ms", &ms) == 1) {
+        printf("⏱️  Délai de %d ms...", ms);
+        fflush(stdout);
         usleep(ms * 1000); // convertir ms en microseconds
+        printf(" ✅ Terminé!\n");
     } else {
         printf("❌ Erreur: format incorrect pour Cité. Utilise: ^ Cité - [nombre] ms\n");
+        printf("📝 Exemple: ^ Cité - 1000 ms\n");
     }
 }
 
@@ -447,16 +452,26 @@ void process_crampte(const char* command) {
     strcpy(trimmed_command, command);
     char* cmd = trim(trimmed_command);
     
-    if (sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3) {
+    // Parser avec plusieurs formats possibles
+    if (sscanf(cmd, "\"%[^\"]\", %d ms, \"%[^\"]\"", initial, &ms, final) == 3 ||
+        sscanf(cmd, "\"%[^\"]\", %d ms , \"%[^\"]\"", initial, &ms, final) == 3 ||
+        sscanf(cmd, "\"%[^\"]\", %d ms  , \"%[^\"]\"", initial, &ms, final) == 3) {
+        
         printf("🔄 %s", initial);
         fflush(stdout);
         usleep(ms * 1000);
-        // Effacer la ligne précédente et afficher le nouveau message
-        printf("\r\033[2K✅ %s\n", final);
+        
+        // Utiliser plusieurs méthodes pour s'assurer que l'effacement fonctionne
+        printf("\r");  // Retour chariot
+        for(int i = 0; i < strlen(initial) + 3; i++) {
+            printf(" ");  // Effacer avec des espaces
+        }
+        printf("\r✅ %s\n", final);  // Afficher le nouveau message
         fflush(stdout);
     } else {
         printf("❌ Erreur de syntaxe crampté! Utilise: ^ crampté - \"message initial\", [délai] ms , \"message final\"\n");
         printf("📝 Exemple: ^ crampté - \"Chargement...\", 1000 ms , \"Terminé!\"\n");
+        printf("🔍 Commande reçue: %s\n", cmd);
     }
 }
 

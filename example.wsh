@@ -45,11 +45,14 @@ alors ^ Wsh - Score parfait, tu gères!
 ^ Wsh - === Test des délais ===
 ^ Wsh - Attente de 1 seconde...
 ^ Cité - 1000 ms
-^ Wsh - C'est fini!
+^ Wsh - Test délai court...
+^ Cité - 500 ms
+^ Wsh - Délais terminés!
 
 ^ Wsh - === Test de modification de message ===
-^ crampté - "Chargement du swag...", 2000 ms , "Swag chargé avec succès!"
-^ crampté - "Patientez mon poto...", 1500 ms , "C'est prêt, on peut y aller!"
+^ crampté - "Chargement du swag...", 2000 ms, "Swag chargé avec succès!"
+^ crampté - "Patientez mon poto...", 1500 ms, "C'est prêt, on peut y aller!"
+^ crampté - "Connexion en cours...", 1000 ms, "Connecté avec succès!"
 
 ^ Wsh - === Test des blagues ===
 ^ quoicoubeh × donne moi ma blague poto ou tes mort
