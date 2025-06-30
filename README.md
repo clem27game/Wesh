@@ -91,15 +91,6 @@ Affiche des messages avec des couleurs.
 
 **Couleurs disponibles :** rouge, vert, bleu, jaune, rose, cyan, blanc, violet, orange
 
-### 7. **Cité** - Délais
-
-Crée une pause dans l'exécution.
-
-**Syntaxe :**
-```wesh
-^ Cité - [délai] ms
-```
-
 **Syntaxe :**
 ```wesh
 ^ crampté - "[message_initial]", [délai] ms , "[message_final]"
