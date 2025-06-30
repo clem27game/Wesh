@@ -91,10 +91,6 @@ Affiche des messages avec des couleurs.
 
 **Couleurs disponibles :** rouge, vert, bleu, jaune, rose, cyan, blanc, violet, orange
 
-**Syntaxe :**
-```wesh
-^ crampté - "[message_initial]", [délai] ms , "[message_final]"
-```
 
 ## 🔥 NOUVELLES FONCTIONNALITÉS 🔥
 
